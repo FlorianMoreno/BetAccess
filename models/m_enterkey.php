@@ -2,7 +2,7 @@
 
 class EnterKey {
 
-	public static function processLol($key) {
+	public static function process($key) {
 		
 	}
 

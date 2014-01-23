@@ -1,13 +1,15 @@
 <?php
 
-include('classes/Config.php');
-include('classes/Blacklist.php');
+require_once('classes/BetaConfig.php');
+require_once('classes/Blacklist.php');
+require_once('classes/BetaKey.php');
+require_once('classes/Validator.php');
 
-Config::init();
+BetaConfig::init();
 Blacklist::init('blacklists/main.txt');
 
 $model = 'models/m_enterkey.php';
-$ctrlr = 'controllers/c_enterkey.php';
+$controller = 'controllers/c_enterkey.php';
 $view = 'views/v_enterkey.php';
 
 if(!empty($_GET['action'])) {
@@ -16,42 +18,16 @@ if(!empty($_GET['action'])) {
 	switch($action) {
 		case 'enterkey':
 			$model = 'models/m_enterkey.php';
-			$ctrlr = 'controllers/c_enterkey.php';
+			$controller = 'controllers/c_enterkey.php';
 			$view = 'views/v_enterkey.php';
 			break;
 	}
 }
 
+include 'views/_top.php';
+include $model;
+include $controller;
+include $view;
+include 'views/_btm.php';
+
 ?>
-
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset='utf-8'>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href='css/style.css'>
-
-		<title><?php echo Config::getValue('projectName'); ?> - Bêta</title>
-	</head>
-
-	<body>
-		<div id="header">
-			<img src="img/logo.png">
-		</div>
-
-		<br>
-
-		<?php
-			include $model;
-			include $ctrlr;
-			include $view;
-		?>
-
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	</body>
-
-</html>

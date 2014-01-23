@@ -1,6 +1,6 @@
 <?php
 
-class Config {
+class BetaConfig {
 
 	private static $defaultConfig = array(
 		'projectName' => 'DreamVids',
