@@ -1,8 +1,7 @@
 <?php
 
 if(isset($_POST['submit'])) {
-	$key = htmlentities($_POST['submit']);
-	EnterKey::process($key);
+	EnterKey::process(htmlentities($_POST['key']));
 }
 
 ?>

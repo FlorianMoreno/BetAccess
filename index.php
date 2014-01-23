@@ -4,8 +4,10 @@ require_once('classes/BetaConfig.php');
 require_once('classes/Blacklist.php');
 require_once('classes/BetaKey.php');
 require_once('classes/Validator.php');
+require_once('classes/Database.php');
 
 BetaConfig::init();
+Database::init();
 Blacklist::init('blacklists/main.txt');
 
 $model = 'models/m_enterkey.php';
@@ -29,5 +31,6 @@ include $model;
 include $controller;
 include $view;
 include 'views/_btm.php';
+
 
 ?>

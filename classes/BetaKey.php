@@ -34,11 +34,13 @@ class BetaKey {
 
 	// static utility functions
 	public static function isKeyIdExisting($id) {
-		//TODO: return true is DB contains a key with id == $id
+		$res = Database::query("SELECT * FROM `keys` WHERE `id`='".$id."'");
+		return Database::countRows($res) != 0;
 	}
 
 	public static function isKeyExisting($keyStr) {
-		//TODO: return true if a key similar to $keyStr exists in DB
+		$res = Database::query("SELECT * FROM `keys` WHERE `key`='".$keyStr."'");
+		return Database::countRows($res) != 0;
 	}
 }
 

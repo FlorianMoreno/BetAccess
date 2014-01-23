@@ -1,9 +1,5 @@
 <?php
 
-require_once('Config.php');
-require_once('Blacklist.php');
-require_once('BetaKey.php');
-
 class Validator {
 
 	public static function validateName($user) {
@@ -14,11 +10,10 @@ class Validator {
 		$keyExisting = BetaKey::isKeyExisting($key);
 
 		if($keyExisting) {
-
+			BetaConfig::setValue('last_success', 'Your key is valid !');
 		}
 		else {
-			Config::setValue('last_error', 'The entered key is not valid !');
-			header('Location: ./');
+			BetaConfig::setValue('last_error', 'The entered key is not valid !');
 		}
 	}
 

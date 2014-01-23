@@ -4,14 +4,33 @@
 			<h3 class="panel-title">Accès à la bêta <?php echo BetaConfig::getValue('projectName'); ?></h3>
 		</div>
 		<div class='panel-body'>
-			<form id="keyForm" role="form" method="post" action="">
+			<?php
+				if(BetaConfig::getValue('last_error')) {
+					$err = BetaConfig::getValue('last_error');
+
+					if($err != 'nope') {
+						echo '<div class="alert alert-danger">'.$err.'</div>';
+						$err = 'nope';
+					}
+				}
+
+				if(BetaConfig::getValue('last_success')) {
+					$err = BetaConfig::getValue('last_success');
+
+					if($err != 'nope') {
+						echo '<div class="alert alert-success">'.$err.'</div>';
+						$err = 'nope';
+					}
+				}
+			?>
+
+			<form role="form" method='post' action=''>
 				<div class="form-group">
 					<label for="key">Clé d'accès</label>
-					<input type="text" class="form-control" id="key" placeholder="Your access key">
-
-					<br>
-					<input type="submit" class="btn btn-primary" value="Go !" name="submit">
+					<input type="text" class="form-control" id="key" placeholder="Your access key" name='key'>
 				</div>
+
+				<input type="submit" class="btn btn-primary" value="Go !" name="submit">
 			</form>
 		</div>
 	</div>

@@ -7,7 +7,10 @@ class BetaConfig {
 		'DB_host' => '127.0.0.1',
 		'DB_username' => 'root',
 		'DB_password' => '',
-		'DB_database' => 'dreambeta'
+		'DB_database' => 'betaccess',
+
+		'last_error' => 'nope',
+		'last_success' => 'nope'
 	);
 
 
