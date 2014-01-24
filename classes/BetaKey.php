@@ -4,12 +4,22 @@ class BetaKey {
 
 	private $id = -1;
 	private $keyStr;
+	private $took;
 
-	public static function load($key) {
+	public static function loadByKey($key) {
 		if(self::isKeyExisting($key)) {
 			$instance = new self();
 			$instance->keyStr = $key;
 			$instance->loadFromDBWithKey();
+			return $instance;
+		}
+	}
+
+	public static function loadById($id) {
+		if(self::isKeyIdExisting($id)) {
+			$instance = new self();
+			$instance->id = $id;
+			$instance->loadFromDBWithId();
 			return $instance;
 		}
 	}
@@ -30,7 +40,24 @@ class BetaKey {
 
 			if($num == 1) {
 				while($row = $res->fetch()) {
-					echo $row['key'];
+					$this->id = $row['id'];
+					$this->keyStr = $row['key'];
+					$this->took = $row['took'];
+				}
+			}
+		}
+	}
+
+	private function loadFromDBWithId() {
+		if($this->id >= 0) {
+			$res = Database::query("SELECT * FROM `keys` WHERE `id`='".$this->id."'");
+			$num = Database::countRows($res);
+
+			if($num == 1) {
+				while($row = $res->fetch()) {
+					$this->id = $row['id'];
+					$this->keyStr = $row['key'];
+					$this->took = $row['took'];
 				}
 			}
 		}
@@ -51,13 +78,27 @@ class BetaKey {
 		}
 	}
 
-
-	// static utility functions
-	public static function generateKeys() {
-		$key1 = self::create("keykey");
-		$key1 = self::create("xavier");
+	public function delete() {
+		Database::query("DELETE FROM `keys` WHERE `id`=".$this->id." AND `key`='".$this->keyStr."'");
+		unset($this->id);
+		unset($this->keyStr);
+		unset($this->took);
 	}
 
+	public function getId() {
+		return $this->id;
+	}
+
+	public function getKeyStr() {
+		return $this->keyStr;
+	}
+
+	public function isAvailable() {
+		return $this->took == 0;
+	}
+
+
+	// static utility functions
 	public static function isKeyIdExisting($id) {
 		$res = Database::query("SELECT * FROM `keys` WHERE `id`='".$id."'");
 		return Database::countRows($res) != 0;
@@ -68,14 +109,18 @@ class BetaKey {
 		return Database::countRows($res) != 0;
 	}
 
-	public static function isKeyIdAlreadyTook($id) {
-		$res = Database::query("SELECT * FROM `keys` WHERE `id`='".$id."' AND took=1");
-		return Database::countRows($res) != 0;
-	}
+	public static function getAllKeys() {
+		$keys = array();
+		$res = Database::selectAllFieldsFromTable('keys');
 
-	public static function isKeyAvailable($keyStr) {
-		$res = Database::query("SELECT * FROM `keys` WHERE `key`='".$keyStr."' AND took=0");
-		return Database::countRows($res) != 0;
+		$i = 0;
+		while($row = $res->fetch()) {
+			$key = self::loadById($row['id']);
+			$keys[$i] = $key;
+			$i++;
+		}
+
+		return $keys;
 	}
 }
 

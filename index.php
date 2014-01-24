@@ -24,6 +24,11 @@ if(!empty($_GET['action'])) {
 			$controller = 'controllers/c_enterkey.php';
 			$view = 'views/v_enterkey.php';
 			break;
+		case 'admin':
+			$model = 'models/m_admin.php';
+			$controller = 'controllers/c_admin.php';
+			$view = 'views/v_admin.php';
+			break;
 	}
 }
 
@@ -32,8 +37,6 @@ include $model;
 include $controller;
 include $view;
 include 'views/_btm.php';
-
-BetaKey::generateKeys();
 
 
 ?>

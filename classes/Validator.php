@@ -6,11 +6,13 @@ class Validator {
 		$blacklisted = Blacklist::isUsernameBlacklisted($user);
 	}
 
-	public static function validateKey($key) {
-		$keyExisting = BetaKey::isKeyExisting($key);
+	public static function validateKey($keyStr) {
+		$keyExisting = BetaKey::isKeyExisting($keyStr);
 
 		if($keyExisting) {
-			if(BetaKey::isKeyAvailable($key)) {
+			$key = BetaKey::loadByKey($keyStr);
+
+			if($key->isAvailable()) {
 				BetaConfig::setValue('last_success', 'Your key is valid !');
 			}
 			else {

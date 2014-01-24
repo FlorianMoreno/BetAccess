@@ -1,5 +1,5 @@
 <div class="container" style="width: 60%;">
-	<div class="panel panel-default panel-primary">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">Accès à la bêta <?php echo BetaConfig::getValue('projectName'); ?></h3>
 		</div>
