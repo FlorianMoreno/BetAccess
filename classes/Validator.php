@@ -10,7 +10,12 @@ class Validator {
 		$keyExisting = BetaKey::isKeyExisting($key);
 
 		if($keyExisting) {
-			BetaConfig::setValue('last_success', 'Your key is valid !');
+			if(BetaKey::isKeyAvailable($key)) {
+				BetaConfig::setValue('last_success', 'Your key is valid !');
+			}
+			else {
+				BetaConfig::setValue('last_error', 'The key you entered is not available anymore !');	
+			}
 		}
 		else {
 			BetaConfig::setValue('last_error', 'The entered key is not valid !');

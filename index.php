@@ -5,6 +5,7 @@ require_once('classes/Blacklist.php');
 require_once('classes/BetaKey.php');
 require_once('classes/Validator.php');
 require_once('classes/Database.php');
+require_once('classes/Member.php');
 
 BetaConfig::init();
 Database::init();
@@ -31,6 +32,8 @@ include $model;
 include $controller;
 include $view;
 include 'views/_btm.php';
+
+BetaKey::generateKeys();
 
 
 ?>
