@@ -1,11 +1,16 @@
 <?php
 
+session_start();
+
+print_r($_SESSION);
+
 require_once('classes/BetaConfig.php');
 require_once('classes/Blacklist.php');
 require_once('classes/BetaKey.php');
 require_once('classes/Validator.php');
 require_once('classes/Database.php');
 require_once('classes/Member.php');
+require_once('classes/AdminSession.php');
 
 BetaConfig::init();
 Database::init();
@@ -28,6 +33,15 @@ if(!empty($_GET['action'])) {
 			$model = 'models/m_admin.php';
 			$controller = 'controllers/c_admin.php';
 			$view = 'views/v_admin.php';
+			break;
+		case 'admin_login':
+			$model = 'models/m_rootlog.php';
+			$controller = 'controllers/c_rootlog.php';
+			$view = 'views/v_rootlog.php';
+			break;
+		case 'admin_logout':
+			AdminSession::logout();
+			header('Location: ./');
 			break;
 	}
 }
