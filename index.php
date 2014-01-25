@@ -29,6 +29,11 @@ if(!empty($_GET['action'])) {
 			$controller = 'controllers/c_enterkey.php';
 			$view = 'views/v_enterkey.php';
 			break;
+		case 'register':
+			$model = 'models/m_register.php';
+			$controller = 'controllers/c_register.php';
+			$view = 'views/v_register.php';
+			break;
 		case 'admin':
 			$model = 'models/m_admin.php';
 			$controller = 'controllers/c_admin.php';
