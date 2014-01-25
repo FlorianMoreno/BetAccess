@@ -69,7 +69,7 @@ class BetaKey {
 		}
 	}
 
-	private function setTook($took) {
+	public function setTook($took) {
 		if($took == 0) {
 			Database::query("UPDATE `keys` SET took=0 WHERE `key`='".$this->keyStr."'");
 		}

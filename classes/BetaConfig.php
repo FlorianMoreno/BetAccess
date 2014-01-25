@@ -3,12 +3,22 @@
 class BetaConfig {
 
 	private static $defaultConfig = array(
+		// main settings
 		'projectName' => 'DreamVids',
+
+		// main DB
 		'DB_host' => '127.0.0.1',
 		'DB_username' => 'root',
 		'DB_password' => '',
 		'DB_database' => 'betaccess',
 
+		// register DB
+		'RegDB_host' => '127.0.0.1',
+		'RegDB_username' => 'root',
+		'RegDB_password' => '',
+		'RegDB_database' => 'dreamvids',
+
+		// error/success
 		'last_error' => 'nope',
 		'last_success' => 'nope'
 	);

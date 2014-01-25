@@ -2,8 +2,29 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2>Rejoindre <?php echo BetaConfig::getValue("projectName"); ?></h2>
+			<p>Enregistrer la clé <?php echo $key; ?></p>
 		</div>
 		<div class="panel-body">
+			<?php
+				if(BetaConfig::getValue('last_error')) {
+					$err = BetaConfig::getValue('last_error');
+
+					if($err != 'nope') {
+						echo '<div class="alert alert-danger">'.$err.'</div>';
+						$err = 'nope';
+					}
+				}
+
+				if(BetaConfig::getValue('last_success')) {
+					$err = BetaConfig::getValue('last_success');
+
+					if($err != 'nope') {
+						echo '<div class="alert alert-success">'.$err.'</div>';
+						$err = 'nope';
+					}
+				}
+			?>
+
 			<form method='post' action='' role='form'>
 				<div class="form-group">
 					<label for="username">Nom d'utilisateur</label>

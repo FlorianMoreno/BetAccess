@@ -14,6 +14,7 @@ class Validator {
 
 			if($key->isAvailable()) {
 				BetaConfig::setValue('last_success', 'Your key is valid !');
+				$_SESSION['key'] = $key->getKeyStr();
 			}
 			else {
 				BetaConfig::setValue('last_error', 'The key you entered is not available anymore !');	
