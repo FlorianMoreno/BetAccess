@@ -15,6 +15,11 @@ BetaConfig::init();
 Database::init();
 Blacklist::init('blacklists/main.txt');
 
+$str1 = 'Lol';
+$str2 = 'lol';
+
+echo '<br>Res:'.strcasecmp($str1, $str2);
+
 $model = 'models/m_enterkey.php';
 $controller = 'controllers/c_enterkey.php';
 $view = 'views/v_enterkey.php';
@@ -32,6 +37,11 @@ if(!empty($_GET['action'])) {
 			$model = 'models/m_register.php';
 			$controller = 'controllers/c_register.php';
 			$view = 'views/v_register.php';
+			break;
+		case 'blist_register':
+			$model = 'models/m_blist_register.php';
+			$controller = 'controllers/c_blist_register.php';
+			$view = 'views/v_blist_register.php';
 			break;
 		case 'admin':
 			$model = 'models/m_admin.php';

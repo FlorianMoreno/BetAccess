@@ -1,13 +1,14 @@
 <?php
 
-class Register {
+class BlacklistRegister {
 
-	public static function process($user, $mail, $pass, $rank) {
+	public static function process($user, $mail, $pass, $rank, $userCode) {
 		$key = $_SESSION['key'];
 		$user = htmlentities(mysql_real_escape_string($user));
 		$mail = htmlentities(mysql_real_escape_string($mail));
 		$pass = htmlentities(mysql_real_escape_string(md5($pass)));
 		$rank = htmlentities(mysql_real_escape_string($rank));
+		$userCode = htmlentities(mysql_real_escape_string($userCode));
 
 		$host = BetaConfig::getValue('RegDB_host');
 		$dbUser = BetaConfig::getValue('RegDB_username');
@@ -18,9 +19,15 @@ class Register {
 
 		$checkUsername = $regDb->query("SELECT * FROM `users` WHERE `username`='".$user."'");
 
-		if(BlackList::isUsernameBlacklisted($user)) {
-			header('Location: ./?action=blist_register');
+		if(!BlackList::isUsernameBlacklisted($user)) {
+			header('Location: ./?action=register');
 			return;
+		}
+		else {
+			if(!BlackList::isUserCodeValid($userCode, $user)) {
+				BetaConfig::setValue('last_error', 'Ce code utilisateur n\'est pas valide !');
+				return;
+			}
 		}
 
 		if($checkUsername->rowCount() != 0) {
