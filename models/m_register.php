@@ -6,7 +6,7 @@ class Register {
 		$key = $_SESSION['key'];
 		$user = htmlentities(mysql_real_escape_string($user));
 		$mail = htmlentities(mysql_real_escape_string($mail));
-		$pass = htmlentities(mysql_real_escape_string(md5($pass)));
+		$pass = htmlentities(mysql_real_escape_string(sha1($pass)));
 		$rank = htmlentities(mysql_real_escape_string($rank));
 
 		$host = BetaConfig::getValue('RegDB_host');

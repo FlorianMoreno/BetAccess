@@ -3,7 +3,7 @@
 class RootLog {
 
 	public static function login($pass) {
-		$res = Database::query("SELECT * FROM `root` WHERE `pass`='".md5($pass)."'");
+		$res = Database::query("SELECT * FROM `root` WHERE `pass`='".sha1($pass)."'");
 
 		if(Database::countRows($res) == 1) {
 			AdminSession::login();
