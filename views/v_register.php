@@ -3,6 +3,7 @@
 		<div class="panel-heading">
 			<h2>Rejoindre <?php echo BetaConfig::getValue("projectName"); ?></h2>
 			<p>Enregistrer la clé <?php echo $key; ?></p>
+			<a class="btn btn-danger" href='./?action=register&delKey'>Enregistrer une autre clé</a>
 		</div>
 		<div class="panel-body">
 			<?php

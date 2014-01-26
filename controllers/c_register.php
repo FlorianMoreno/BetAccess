@@ -25,4 +25,10 @@ if(isset($_POST['registerSubmit'])) {
 	}
 }
 
+if(isset($_GET['delKey'])) {
+	unset($_SESSION['key']);
+	header('Location: ./');
+	exit();
+}
+
 ?>

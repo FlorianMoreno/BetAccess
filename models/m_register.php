@@ -36,7 +36,7 @@ class Register {
 					$keyObject = BetaKey::loadByKey($key);
 
 					if($keyObject->isAvailable()) {
-						BetaConfig::setValue('last_success', 'Inscription terminée, bienvenue sur '.BetaConfig::getValue('projectName').' !');
+						BetaConfig::setValue('last_success', 'Inscription terminée, connectez-vous <a href='.BetaConfig::getValue('projectLocation').'>ici</a>');
 						$keyObject->setTook(1);
 						unset($_SESSION['key']);
 						return;
