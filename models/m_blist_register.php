@@ -4,11 +4,11 @@ class BlacklistRegister {
 
 	public static function process($user, $mail, $pass, $rank, $userCode) {
 		$key = $_SESSION['key'];
-		$user = htmlentities(mysql_real_escape_string($user));
-		$mail = htmlentities(mysql_real_escape_string($mail));
-		$pass = htmlentities(mysql_real_escape_string(md5($pass)));
-		$rank = htmlentities(mysql_real_escape_string($rank));
-		$userCode = htmlentities(mysql_real_escape_string($userCode));
+		$user = htmlentities(addslashes($user));
+		$mail = htmlentities(addslashes($mail));
+		$pass = htmlentities(addslashes(md5($pass)));
+		$rank = htmlentities(addslashes($rank));
+		$userCode = htmlentities(addslashes($userCode));
 
 		$host = BetaConfig::getValue('RegDB_host');
 		$dbUser = BetaConfig::getValue('RegDB_username');

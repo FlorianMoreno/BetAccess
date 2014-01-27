@@ -10,13 +10,13 @@ else {
 
 if(isset($_POST['blistRegisterSubmit'])) {
 	if(isset($_POST['username']) && isset($_POST['mail']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['passwordConfirm']) && isset($_POST['usernameCode'])) {
-		$password = htmlentities(mysql_real_escape_string($_POST['password']));
-		$password2 = htmlentities(mysql_real_escape_string($_POST['passwordConfirm']));
+		$password = htmlentities(addslashes($_POST['password']));
+		$password2 = htmlentities(addslashes($_POST['passwordConfirm']));
 
 		if($password == $password2) {
-			$username = htmlentities(mysql_real_escape_string($_POST['username']));
-			$mail = htmlentities(mysql_real_escape_string($_POST['mail']));
-			$usernameCode = htmlentities(mysql_real_escape_string($_POST['usernameCode']));
+			$username = htmlentities(addslashes($_POST['username']));
+			$mail = htmlentities(addslashes($_POST['mail']));
+			$usernameCode = htmlentities(addslashes($_POST['usernameCode']));
 
 			BlacklistRegister::process($username, $mail, $password, 1, $usernameCode);
 		}

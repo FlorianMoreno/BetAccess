@@ -4,10 +4,10 @@ class Register {
 
 	public static function process($user, $mail, $pass, $rank) {
 		$key = $_SESSION['key'];
-		$user = htmlentities(mysql_real_escape_string($user));
-		$mail = htmlentities(mysql_real_escape_string($mail));
-		$pass = htmlentities(mysql_real_escape_string(sha1($pass)));
-		$rank = htmlentities(mysql_real_escape_string($rank));
+		$user = htmlentities(addslashes($user));
+		$mail = htmlentities(addslashes($mail));
+		$pass = htmlentities(addslashes(sha1($pass)));
+		$rank = htmlentities(addslashes($rank));
 
 		$host = BetaConfig::getValue('RegDB_host');
 		$dbUser = BetaConfig::getValue('RegDB_username');

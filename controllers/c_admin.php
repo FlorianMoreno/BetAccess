@@ -7,7 +7,7 @@ if(!AdminSession::isLogged()) {
 
 if(isset($_GET['key_to_del'])) {
 	if(AdminSession::isLogged()) {
-		$keyId = mysql_real_escape_string(htmlentities($_GET['key_to_del']));
+		$keyId = addslashes(htmlentities($_GET['key_to_del']));
 		Admin::deleteKeyById($keyId);
 		header('Location: ./?action=admin');
 	}
@@ -15,7 +15,7 @@ if(isset($_GET['key_to_del'])) {
 
 if(isset($_POST['addKeySubmit'])) {
 	if(isset($_POST['newKey'])) {
-		$newKeyStr = htmlentities(mysql_real_escape_string($_POST['newKey']));
+		$newKeyStr = htmlentities(addslashes($_POST['newKey']));
 		Admin::addNewKey($newKeyStr);
 	}
 }

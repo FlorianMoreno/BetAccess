@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-print_r($_SESSION);
 
 require_once('classes/BetaConfig.php');
 require_once('classes/Blacklist.php');
@@ -14,11 +13,6 @@ require_once('classes/AdminSession.php');
 BetaConfig::init();
 Database::init();
 Blacklist::init('blacklists/main.txt');
-
-$str1 = 'Lol';
-$str2 = 'lol';
-
-echo '<br>Res:'.strcasecmp($str1, $str2);
 
 $model = 'models/m_enterkey.php';
 $controller = 'controllers/c_enterkey.php';
