@@ -7,7 +7,6 @@ require_once('classes/Blacklist.php');
 require_once('classes/BetaKey.php');
 require_once('classes/Validator.php');
 require_once('classes/Database.php');
-require_once('classes/Member.php');
 require_once('classes/AdminSession.php');
 
 BetaConfig::init();
